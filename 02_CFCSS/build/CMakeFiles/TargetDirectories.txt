@@ -1,0 +1,8 @@
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/intrinsics_gen.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/vt_gen.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/omp_gen.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/acc_gen.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/target_parser_gen.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/CFCSSPass.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/edit_cache.dir
+/Users/sajidzubair/llvm-experiments/02_CFCSS/build/CMakeFiles/rebuild_cache.dir
