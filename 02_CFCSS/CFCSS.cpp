@@ -78,24 +78,37 @@ struct CFCSS : public FunctionPass {
 
       Instruction *TI = BB.getTerminator();
 
-      for (unsigned i = 0;
-           i < TI->getNumSuccessors();
-           i++) {
+      for (unsigned i = 0; i < TI->getNumSuccessors(); i++) {
 
-        BasicBlock *Succ =
-            TI->getSuccessor(i);
+    BasicBlock *Succ = TI->getSuccessor(i);
 
-        int SuccSig =
-            SignatureMap[Succ];
+    int CurrentSig = SignatureMap[&BB];
+    int SuccSig    = SignatureMap[Succ];
 
-        IRBuilder<> ExitBuilder(TI);
+    // Delta = Current XOR Successor
+    int Delta = CurrentSig ^ SuccSig;
 
-        ExitBuilder.CreateStore(
+    IRBuilder<> ExitBuilder(TI);
+
+    // Load current runtime signature
+    Value *CurrentRuntimeSig =
+        ExitBuilder.CreateLoad(
+            Type::getInt32Ty(Ctx),
+            RuntimeSig);
+
+    // XOR with delta
+    Value *NewRuntimeSig =
+        ExitBuilder.CreateXor(
+            CurrentRuntimeSig,
             ConstantInt::get(
                 Type::getInt32Ty(Ctx),
-                SuccSig),
-            RuntimeSig);
-      }
+                Delta));
+
+    // Store updated signature
+    ExitBuilder.CreateStore(
+        NewRuntimeSig,
+        RuntimeSig);
+}
     }
 
     return true;
